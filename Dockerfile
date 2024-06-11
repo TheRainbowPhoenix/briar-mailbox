@@ -39,6 +39,6 @@ COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mai
 # add local files
 COPY root/ /
 
-RUN bash -c 'mkdir -p /{config/.local/share}'
+RUN bash -c 'mkdir -p /config/.local/share'
 
 WORKDIR /app
