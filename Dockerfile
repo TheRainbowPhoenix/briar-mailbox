@@ -16,7 +16,7 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
     fi;
 
 
-FROM ghcr.io/linuxserver/baseimage-alpine:latest
+FROM ghcr.io/linuxserver/baseimage-alpine:3.20
 
 # set version label
 ARG BUILD_DATE
