@@ -28,7 +28,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apk upgrade && \
   apk add --no-cache \
-    openjdk-17-jre-headless && \
+    openjdk17-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/*
