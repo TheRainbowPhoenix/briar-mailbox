@@ -10,7 +10,7 @@ ARG DEBIAN_VERSION=bookworm-slim
 
 
 #FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
-FROM ubunt:latest AS build
+FROM ubuntu:latest AS build
 WORKDIR /mailbox
 COPY . /mailbox
 ARG TARGETARCH
