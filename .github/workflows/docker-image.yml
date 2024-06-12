@@ -2,6 +2,8 @@ name: Docker Image CI
 
 on:
   push:
+    branches:
+      - 'main'
     tags:
       - 'v*'
 
@@ -32,8 +34,10 @@ jobs:
           images: |
             ${{ vars.DOCKERHUB_REPO }}/${{ vars.DOCKERHUB_IMAGENAME }}
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=edge,branch=main
+            type=pep440,pattern={{version}}
+            type=pep440,pattern={{major}}.{{minor}}
+            type=schedule,pattern={{date 'YYYYMMDD-hhmmss' tz='Europe/Berlin'}}
             type=sha
       - 
         name: Build and push
