@@ -143,6 +143,8 @@ RUN \
 # add bin files
 COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mailbox-cli-linux.jar
 
+RUN bash -c 'mkdir -p /root/.local/share'
+
 WORKDIR /app
 
 CMD [ "java", "-jar", "/app/mailbox-cli-linux.jar" ]
@@ -173,6 +175,8 @@ RUN \
 # add bin files
 COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mailbox-cli-linux.jar
 
+RUN bash -c 'mkdir -p /root/.local/share'
+
 WORKDIR /app
 
 CMD [ "java", "-jar", "/app/mailbox-cli-linux.jar" ]
@@ -202,6 +206,8 @@ RUN \
 
 # add bin files
 COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mailbox-cli-linux.jar
+
+RUN bash -c 'mkdir -p /root/.local/share'
 
 WORKDIR /app
 
