@@ -9,10 +9,21 @@ ARG UBUNTU_VERSION=noble
 ARG DEBIAN_VERSION=bookworm-slim
 
 
-FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
+#FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
+FROM ubunt:latest AS build
 WORKDIR /mailbox
 COPY . /mailbox
 ARG TARGETARCH
+ARG JAVA_VERSION JAVA_VERSION
+RUN \
+  echo "**** install dependencies ****" && \
+  apt update && \
+  apt upgrade && \
+  apt install --no-cache \
+    openjdk-${JAVA_VERSION}-jdk-headless && \
+  echo "**** cleanup ****" && \
+  rm -rf \
+    /tmp/*
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
     ./gradlew aarch64LinuxJar ; \
     mv mailbox-cli/build/libs/mailbox-cli-linux-aarch64.jar mailbox-cli/build/libs/mailbox-cli-linux.jar ; \
