@@ -135,6 +135,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apk upgrade && \
   apk add --no-cache \
+    bash \
     openjdk${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
