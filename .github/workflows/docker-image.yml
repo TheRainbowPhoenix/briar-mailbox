@@ -47,23 +47,23 @@ jobs:
             type=pep440,pattern={{major}}.{{minor}}
             type=sha
       
-      - name: Build and export to Docker
-        uses: docker/build-push-action@v5
-        id: build
-        with:
-          context: .
-          file: ./Dockerfile
-          load: true
-          tags: ${{ steps.meta.outputs.tags }}-${{ env.TARGET }}
-          labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            BUILD_DATE=${{ steps.version.outputs.date }}
-            BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: ${{ env.TARGET }}
+#      - name: Build and export to Docker
+#        uses: docker/build-push-action@v5
+#        id: build
+#        with:
+#          context: .
+#          file: ./Dockerfile
+#          load: true
+#          tags: ${{ steps.meta.outputs.tags }}-${{ env.TARGET }}
+#          labels: ${{ steps.meta.outputs.labels }}
+#          build-args: |
+#            BUILD_DATE=${{ steps.version.outputs.date }}
+#            BUILD_VERSION=${{ steps.version.outputs.hash }}
+#          target: ${{ env.TARGET }}
       
-      - name: Test image
-        run: |
-          docker run --rm ${{ steps.meta.outputs.tags }}
+#      - name: Test image
+#        run: |
+#          docker run --rm ${{ steps.meta.outputs.tags }}
       
       - name: Build and push
         uses: docker/build-push-action@v5
