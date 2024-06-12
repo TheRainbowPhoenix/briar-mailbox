@@ -18,7 +18,7 @@ ARG JAVA_VERSION JAVA_VERSION
 RUN \
   echo "**** install dependencies ****" && \
   apt update && \
-  apt upgrade && \
+  apt upgrade -y && \
   apt install -y \
     openjdk-${JAVA_VERSION}-jdk-headless && \
   echo "**** cleanup ****" && \
@@ -81,7 +81,7 @@ LABEL maintainer="smhrambo"
 RUN \
   echo "**** install dependencies ****" && \
   apt update && \
-  apt upgrade && \
+  apt upgrade -y && \
   apt install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
@@ -113,7 +113,7 @@ LABEL maintainer="smhrambo"
 RUN \
   echo "**** install dependencies ****" && \
   apt update && \
-  apt upgrade && \
+  apt upgrade -y && \
   apt install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
@@ -176,7 +176,7 @@ LABEL maintainer="smhrambo"
 RUN \
   echo "**** install dependencies ****" && \
   apt update && \
-  apt upgrade && \
+  apt upgrade -y && \
   apt install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
@@ -208,7 +208,7 @@ LABEL maintainer="smhrambo"
 RUN \
   echo "**** install dependencies ****" && \
   apt update && \
-  apt upgrade && \
+  apt upgrade -y && \
   apt install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
