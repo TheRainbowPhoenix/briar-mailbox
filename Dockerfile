@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 
-FROM eclipse-temurin:17 AS build
+ARG JAVA_VERSION=17
+
+FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
 WORKDIR /mailbox
 COPY . /mailbox
 ARG TARGETARCH
@@ -15,7 +17,6 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
     exit 1 ; \
     fi;
 
-
 FROM ghcr.io/linuxserver/baseimage-alpine:3.20
 
 # set version label
@@ -28,7 +29,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apk upgrade && \
   apk add --no-cache \
-    openjdk17-jre-headless && \
+    openjdk${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/*
@@ -39,6 +40,6 @@ COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mai
 # add local files
 COPY root/ /
 
-RUN bash -c 'mkdir -p /config/.local/share'
+RUN bash -c 'mkdir -p /config/.local/share/briar-mailbox/tor'
 
 WORKDIR /app
