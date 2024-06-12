@@ -19,7 +19,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apt update && \
   apt upgrade && \
-  apt install --no-cache \
+  apt install -y \
     openjdk-${JAVA_VERSION}-jdk-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -82,7 +82,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apt update && \
   apt upgrade && \
-  apt install --no-cache \
+  apt install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -114,7 +114,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apt update && \
   apt upgrade && \
-  apt install --no-cache \
+  apt install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
