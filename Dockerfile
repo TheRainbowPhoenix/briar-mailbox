@@ -5,6 +5,7 @@ ARG ALPINE_VERSION=3.20
 ARG UBUNTU_VERSION=jammy
 ARG DEBIAN_VERSION=bullseye
 
+
 FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
 WORKDIR /mailbox
 COPY . /mailbox
@@ -20,6 +21,8 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
     exit 1 ; \
     fi;
 
+
+########### Linuxserver.io alpinebase ###########
 FROM ghcr.io/linuxserver/baseimage-alpine:${ALPINE_VERSION} AS linuxserver-alpine
 
 ARG JAVA_VERSION JAVA_VERSION
@@ -45,6 +48,12 @@ COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mai
 # add local files
 COPY root/ /
 
+RUN bash -c 'mkdir -p /config/.local/share/briar-mailbox/tor'
+
+WORKDIR /app
+
+
+########### Linuxserver.io ubuntubase ###########
 FROM ghcr.io/linuxserver/baseimage-ubuntu:${UBUNTU_VERSION} AS linuxserver-ubuntu
 
 ARG JAVA_VERSION JAVA_VERSION
@@ -75,6 +84,8 @@ RUN bash -c 'mkdir -p /config/.local/share/briar-mailbox/tor'
 
 WORKDIR /app
 
+
+########### Linuxserver.io debianbase ###########
 FROM ghcr.io/linuxserver/baseimage-debian:${DEBIAN_VERSION} AS linuxserver-debian
 
 ARG JAVA_VERSION JAVA_VERSION
