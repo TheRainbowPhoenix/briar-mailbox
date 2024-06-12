@@ -8,7 +8,7 @@ on:
       - 'v*'
 
 env:
-  TARGET: alpine
+  TARGET: debian
 
 jobs:
   buildx:
