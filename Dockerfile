@@ -2,7 +2,7 @@
 
 ARG JAVA_VERSION=17
 ARG LSALPINE_VERSION=3.20
-ARG LSUBUNTU_VERSION=jammy
+ARG LSUBUNTU_VERSION=noble
 ARG LSDEBIAN_VERSION=bookworm
 ARG ALPINE_VERSION=3.20
 ARG UBUNTU_VERSION=noble
@@ -25,34 +25,8 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
     fi;
 
 
-FROM ubuntu:latest AS build2
-WORKDIR /mailbox
-COPY . /mailbox
-ARG TARGETARCH
-ARG JAVA_VERSION JAVA_VERSION
-RUN \
-  echo "**** install dependencies ****" && \
-  apt-get -qq update && \
-  apt-get -qq upgrade -y && \
-  apt-get -qq install -y \
-    openjdk-${JAVA_VERSION}-jdk-headless && \
-  echo "**** cleanup ****" && \
-  rm -rf \
-    /tmp/*
-RUN if [ "$TARGETARCH" = "arm64" ]; then \
-    ./gradlew aarch64LinuxJar ; \
-    mv mailbox-cli/build/libs/mailbox-cli-linux-aarch64.jar mailbox-cli/build/libs/mailbox-cli-linux.jar ; \
-    elif [ "$TARGETARCH" = "amd64" ]; then \
-    ./gradlew x86LinuxJar ; \
-    mv mailbox-cli/build/libs/mailbox-cli-linux-x86_64.jar mailbox-cli/build/libs/mailbox-cli-linux.jar ; \
-    else \
-    echo 'The target architecture is not supported. Exiting.' ; \
-    exit 1 ; \
-    fi;
-
-
 ########### Linuxserver.io alpinebase ###########
-FROM ghcr.io/linuxserver/baseimage-alpine:${LSALPINE_VERSION} AS linuxserver-alpine
+FROM ghcr.io/linuxserver/baseimage-alpine:${LSALPINE_VERSION} AS lsalpine
 
 ARG JAVA_VERSION JAVA_VERSION
 
@@ -83,7 +57,7 @@ WORKDIR /app
 
 
 ########### Linuxserver.io ubuntubase ###########
-FROM ghcr.io/linuxserver/baseimage-ubuntu:${LSUBUNTU_VERSION} AS linuxserver-ubuntu
+FROM ghcr.io/linuxserver/baseimage-ubuntu:${LSUBUNTU_VERSION} AS lsubuntu
 
 ARG JAVA_VERSION JAVA_VERSION
 
@@ -115,7 +89,7 @@ WORKDIR /app
 
 
 ########### Linuxserver.io debianbase ###########
-FROM ghcr.io/linuxserver/baseimage-debian:${LSDEBIAN_VERSION} AS linuxserver-debian
+FROM ghcr.io/linuxserver/baseimage-debian:${LSDEBIAN_VERSION} AS lsdebian
 
 ARG JAVA_VERSION JAVA_VERSION
 
