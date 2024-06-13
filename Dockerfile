@@ -69,6 +69,7 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
+  mkdir -p /usr/share/man/man1 && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
   apt-get -qq install --no-install-recommends --no-install-suggests -y \
@@ -101,6 +102,7 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
+  mkdir -p /usr/share/man/man1 && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
   apt-get -qq install --no-install-recommends --no-install-suggests -y \
@@ -164,6 +166,7 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
+  mkdir -p /usr/share/man/man1 && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
   apt-get -qq install --no-install-recommends --no-install-suggests -y \
@@ -196,6 +199,7 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
+  mkdir -p /usr/share/man/man1 && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
   apt-get -qq install --no-install-recommends --no-install-suggests -y \
