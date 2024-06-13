@@ -35,48 +35,92 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            ${{ vars.DOCKERHUB_REPO }}/${{ vars.DOCKERHUB_IMAGENAME }}
-          tags: |
-            type=edge,branch=main
-            type=pep440,pattern={{version}}
-            type=pep440,pattern={{major}}.{{minor}}
-            type=sha
-      
-#      - name: Build and export to Docker
-#        uses: docker/build-push-action@v5
-#        id: build
-#        with:
-#          context: .
-#          file: ./Dockerfile
-#          load: true
-#          tags: ${{ steps.meta.outputs.tags }}-${{ env.TARGET }}
-#          labels: ${{ steps.meta.outputs.labels }}
-#          build-args: |
-#            BUILD_DATE=${{ steps.version.outputs.date }}
-#            BUILD_VERSION=${{ steps.version.outputs.hash }}
-#          target: ${{ env.TARGET }}
-      
-#      - name: Test image
-#        run: |
-#          docker run --rm ${{ steps.meta.outputs.tags }}
-      
-      - name: Build and push
+      - name: Build and push lsalpine
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}-${{ env.TARGET }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: latest, v1.0.8, v1.0, v1.0.8-lsalpine, v1.0-lsalpine, lsalpine, ls, v1.0.8-lsalpine3.20, v1.0-lsalpine3.20, lsalpine3.20, ls3.20
           platforms: |
             linux/amd64
             linux/arm64
           build-args: |
             BUILD_DATE=${{ steps.version.outputs.date }}
             BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: ${{ env.TARGET }}
+          target: lsalpine
+
+      - name: Build and push lsdebian
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: v1.0.8-lsdebian, v1.0-lsdebian, lsdebian, v1.0.8-lsbookworm, v1.0-lsbookworm, lsbookworm
+          platforms: |
+            linux/amd64
+            linux/arm64
+          build-args: |
+            BUILD_DATE=${{ steps.version.outputs.date }}
+            BUILD_VERSION=${{ steps.version.outputs.hash }}
+          target: lsdebian
+
+      - name: Build and push lsubuntu
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: v1.0.8-lsubuntu, v1.0-lsubuntu, lsubuntu, v1.0.8-lsnoble, v1.0-lsnoble, lsnoble
+          platforms: |
+            linux/amd64
+            linux/arm64
+          build-args: |
+            BUILD_DATE=${{ steps.version.outputs.date }}
+            BUILD_VERSION=${{ steps.version.outputs.hash }}
+          target: lsubuntu
+
+      - name: Build and push alpine
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: v1.0.8-alpine, v1.0-alpine, alpine, v1.0.8-alpine3.20, v1.0-alpine3.20, alpine3.20
+          platforms: |
+            linux/amd64
+            linux/arm64
+          build-args: |
+            BUILD_DATE=${{ steps.version.outputs.date }}
+            BUILD_VERSION=${{ steps.version.outputs.hash }}
+          target: alpine
+
+      - name: Build and push debian
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: v1.0.8-debian, v1.0-debian, debian, v1.0.8-bookworm, v1.0-bookworm, bookworm
+          platforms: |
+            linux/amd64
+            linux/arm64
+          build-args: |
+            BUILD_DATE=${{ steps.version.outputs.date }}
+            BUILD_VERSION=${{ steps.version.outputs.hash }}
+          target: debian
+
+      - name: Build and push ubuntu
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: v1.0.8-ubuntu, v1.0-ubuntu, ubuntu, v1.0.8-noble, v1.0-noble, noble
+          platforms: |
+            linux/amd64
+            linux/arm64
+          build-args: |
+            BUILD_DATE=${{ steps.version.outputs.date }}
+            BUILD_VERSION=${{ steps.version.outputs.hash }}
+          target: ubuntu
