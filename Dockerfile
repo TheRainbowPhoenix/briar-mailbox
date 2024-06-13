@@ -71,7 +71,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
-  apt-get -qq install -y \
+  apt-get -qq install --no-install-recommends --no-install-suggests -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -103,7 +103,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
-  apt-get -qq install -y \
+  apt-get -qq install --no-install-recommends --no-install-suggests -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -166,7 +166,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
-  apt-get -qq install -y \
+  apt-get -qq install --no-install-recommends --no-install-suggests -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -198,7 +198,7 @@ RUN \
   echo "**** install dependencies ****" && \
   apt-get -qq update && \
   apt-get -qq upgrade -y && \
-  apt-get -qq install -y \
+  apt-get -qq install --no-install-recommends --no-install-suggests -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
