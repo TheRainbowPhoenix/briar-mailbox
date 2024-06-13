@@ -9,17 +9,32 @@ ARG UBUNTU_VERSION=noble
 ARG DEBIAN_VERSION=bookworm-slim
 
 
-#FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
-FROM ubuntu:latest AS build
+FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
+WORKDIR /mailbox
+COPY . /mailbox
+ARG TARGETARCH
+RUN if [ "$TARGETARCH" = "arm64" ]; then \
+    ./gradlew aarch64LinuxJar ; \
+    mv mailbox-cli/build/libs/mailbox-cli-linux-aarch64.jar mailbox-cli/build/libs/mailbox-cli-linux.jar ; \
+    elif [ "$TARGETARCH" = "amd64" ]; then \
+    ./gradlew x86LinuxJar ; \
+    mv mailbox-cli/build/libs/mailbox-cli-linux-x86_64.jar mailbox-cli/build/libs/mailbox-cli-linux.jar ; \
+    else \
+    echo 'The target architecture is not supported. Exiting.' ; \
+    exit 1 ; \
+    fi;
+
+
+FROM ubuntu:latest AS build2
 WORKDIR /mailbox
 COPY . /mailbox
 ARG TARGETARCH
 ARG JAVA_VERSION JAVA_VERSION
 RUN \
   echo "**** install dependencies ****" && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y \
+  apt-get -qq update && \
+  apt-get -qq upgrade -y && \
+  apt-get -qq install -y \
     openjdk-${JAVA_VERSION}-jdk-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -80,9 +95,9 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y \
+  apt-get -qq update && \
+  apt-get -qq upgrade -y && \
+  apt-get -qq install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -112,9 +127,9 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y \
+  apt-get -qq update && \
+  apt-get -qq upgrade -y && \
+  apt-get -qq install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -175,9 +190,9 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y \
+  apt-get -qq update && \
+  apt-get -qq upgrade -y && \
+  apt-get -qq install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -207,9 +222,9 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y \
+  apt-get -qq update && \
+  apt-get -qq upgrade -y && \
+  apt-get -qq install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
