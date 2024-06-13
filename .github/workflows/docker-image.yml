@@ -7,9 +7,6 @@ on:
     tags:
       - 'v*'
 
-env:
-  TARGET: debian
-
 jobs:
   buildx:
     runs-on: ubuntu-latest
@@ -59,109 +56,11 @@ jobs:
           build-args: |
             BUILD_DATE=${{ steps.version.outputs.date }}
             BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: lsalpine
 
-      - name: Build and push lsdebian
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            smhrambo/briar-mailbox:v1.0.8-lsdebian
-            smhrambo/briar-mailbox:v1.0-lsdebian
-            smhrambo/briar-mailbox:lsdebian
-            smhrambo/briar-mailbox:v1.0.8-lsbookworm
-            smhrambo/briar-mailbox:v1.0-lsbookworm
-            smhrambo/briar-mailbox:lsbookworm
-          platforms: |
-            linux/amd64
-            linux/arm64
-          build-args: |
-            BUILD_DATE=${{ steps.version.outputs.date }}
-            BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: lsdebian
 
-      - name: Build and push lsubuntu
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            smhrambo/briar-mailbox:v1.0.8-lsubuntu
-            smhrambo/briar-mailbox:v1.0-lsubuntu
-            smhrambo/briar-mailbox:lsubuntu
-            smhrambo/briar-mailbox:v1.0.8-lsnoble
-            smhrambo/briar-mailbox:v1.0-lsnoble
-            smhrambo/briar-mailbox:lsnoble
-          platforms: |
-            linux/amd64
-            linux/arm64
-          build-args: |
-            BUILD_DATE=${{ steps.version.outputs.date }}
-            BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: lsubuntu
 
-      - name: Build and push alpine
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            smhrambo/briar-mailbox:v1.0.8-alpine
-            smhrambo/briar-mailbox:v1.0-alpine
-            smhrambo/briar-mailbox:alpine
-            smhrambo/briar-mailbox:v1.0.8-alpine3.20
-            smhrambo/briar-mailbox:v1.0-alpine3.20
-            smhrambo/briar-mailbox:alpine3.20
-          platforms: |
-            linux/amd64
-            linux/arm64
-          build-args: |
-            BUILD_DATE=${{ steps.version.outputs.date }}
-            BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: alpine
 
-      - name: Build and push debian
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            smhrambo/briar-mailbox:v1.0.8-debian
-            smhrambo/briar-mailbox:v1.0-debian
-            smhrambo/briar-mailbox:debian
-            smhrambo/briar-mailbox:v1.0.8-bookworm
-            smhrambo/briar-mailbox:v1.0-bookworm
-            smhrambo/briar-mailbox:bookworm
-          platforms: |
-            linux/amd64
-            linux/arm64
-          build-args: |
-            BUILD_DATE=${{ steps.version.outputs.date }}
-            BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: debian
 
-      - name: Build and push ubuntu
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            smhrambo/briar-mailbox:v1.0.8-ubuntu
-            smhrambo/briar-mailbox:v1.0-ubuntu
-            smhrambo/briar-mailbox:ubuntu
-            smhrambo/briar-mailbox:v1.0.8-noble
-            smhrambo/briar-mailbox:v1.0-noble
-            smhrambo/briar-mailbox:noble
-          platforms: |
-            linux/amd64
-            linux/arm64
-          build-args: |
-            BUILD_DATE=${{ steps.version.outputs.date }}
-            BUILD_VERSION=${{ steps.version.outputs.hash }}
-          target: ubuntu
+
+
+
