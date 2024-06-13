@@ -41,7 +41,17 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: latest, v1.0.8, v1.0, v1.0.8-lsalpine, v1.0-lsalpine, lsalpine, ls, v1.0.8-lsalpine3.20, v1.0-lsalpine3.20, lsalpine3.20, ls3.20
+          tags: |
+            smhrambo/briar-mailbox:latest
+            smhrambo/briar-mailbox:v1.0.8
+            smhrambo/briar-mailbox:v1.0
+            smhrambo/briar-mailbox:v1.0.8-lsalpine
+            smhrambo/briar-mailbox:v1.0-lsalpine
+            smhrambo/briar-mailbox:lsalpine
+            smhrambo/briar-mailbox:ls
+            smhrambo/briar-mailbox:v1.0.8-lsalpine3.20
+            smhrambo/briar-mailbox:v1.0-lsalpine3.20
+            smhrambo/briar-mailbox:lsalpine3.20, ls3.20
           platforms: |
             linux/amd64
             linux/arm64
@@ -56,7 +66,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: v1.0.8-lsdebian, v1.0-lsdebian, lsdebian, v1.0.8-lsbookworm, v1.0-lsbookworm, lsbookworm
+          tags: |
+            smhrambo/briar-mailbox:v1.0.8-lsdebian
+            smhrambo/briar-mailbox:v1.0-lsdebian
+            smhrambo/briar-mailbox:lsdebian
+            smhrambo/briar-mailbox:v1.0.8-lsbookworm
+            smhrambo/briar-mailbox:v1.0-lsbookworm
+            smhrambo/briar-mailbox:lsbookworm
           platforms: |
             linux/amd64
             linux/arm64
@@ -71,7 +87,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: v1.0.8-lsubuntu, v1.0-lsubuntu, lsubuntu, v1.0.8-lsnoble, v1.0-lsnoble, lsnoble
+          tags: |
+            smhrambo/briar-mailbox:v1.0.8-lsubuntu
+            smhrambo/briar-mailbox:v1.0-lsubuntu
+            smhrambo/briar-mailbox:lsubuntu
+            smhrambo/briar-mailbox:v1.0.8-lsnoble
+            smhrambo/briar-mailbox:v1.0-lsnoble
+            smhrambo/briar-mailbox:lsnoble
           platforms: |
             linux/amd64
             linux/arm64
@@ -86,7 +108,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: v1.0.8-alpine, v1.0-alpine, alpine, v1.0.8-alpine3.20, v1.0-alpine3.20, alpine3.20
+          tags: |
+            smhrambo/briar-mailbox:v1.0.8-alpine
+            smhrambo/briar-mailbox:v1.0-alpine
+            smhrambo/briar-mailbox:alpine
+            smhrambo/briar-mailbox:v1.0.8-alpine3.20
+            smhrambo/briar-mailbox:v1.0-alpine3.20
+            smhrambo/briar-mailbox:alpine3.20
           platforms: |
             linux/amd64
             linux/arm64
@@ -101,7 +129,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: v1.0.8-debian, v1.0-debian, debian, v1.0.8-bookworm, v1.0-bookworm, bookworm
+          tags: |
+            smhrambo/briar-mailbox:v1.0.8-debian
+            smhrambo/briar-mailbox:v1.0-debian
+            smhrambo/briar-mailbox:debian
+            smhrambo/briar-mailbox:v1.0.8-bookworm
+            smhrambo/briar-mailbox:v1.0-bookworm
+            smhrambo/briar-mailbox:bookworm
           platforms: |
             linux/amd64
             linux/arm64
@@ -116,7 +150,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: v1.0.8-ubuntu, v1.0-ubuntu, ubuntu, v1.0.8-noble, v1.0-noble, noble
+          tags: |
+            smhrambo/briar-mailbox:v1.0.8-ubuntu
+            smhrambo/briar-mailbox:v1.0-ubuntu
+            smhrambo/briar-mailbox:ubuntu
+            smhrambo/briar-mailbox:v1.0.8-noble
+            smhrambo/briar-mailbox:v1.0-noble
+            smhrambo/briar-mailbox:noble
           platforms: |
             linux/amd64
             linux/arm64
