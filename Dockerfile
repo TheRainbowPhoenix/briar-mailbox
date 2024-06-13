@@ -9,7 +9,7 @@ ARG UBUNTU_VERSION=noble
 ARG DEBIAN_VERSION=bookworm-slim
 
 
-FROM eclipse-temurin:${JAVA_VERSION}-jdk-ubi9-minimal AS build
+FROM eclipse-temurin:${JAVA_VERSION}-jdk AS build
 WORKDIR /mailbox
 COPY . /mailbox
 ARG TARGETARCH
