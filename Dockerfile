@@ -17,9 +17,9 @@ ARG TARGETARCH
 ARG JAVA_VERSION JAVA_VERSION
 RUN \
   echo "**** install dependencies ****" && \
-  apt update && \
-  apt upgrade -y && \
-  apt install -y \
+  apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y \
     openjdk-${JAVA_VERSION}-jdk-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -80,9 +80,9 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt update && \
-  apt upgrade -y && \
-  apt install -y \
+  apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -112,9 +112,9 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt update && \
-  apt upgrade -y && \
-  apt install -y \
+  apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
@@ -175,14 +175,14 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt update && \
-  apt upgrade -y && \
-  apt install -y \
+  apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/* \
-    /var/lib/apt/lists/*
+    /var/lib/apt-get/lists/*
 
 # add bin files
 COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mailbox-cli-linux.jar
@@ -207,14 +207,14 @@ LABEL maintainer="smhrambo"
 
 RUN \
   echo "**** install dependencies ****" && \
-  apt update && \
-  apt upgrade -y && \
-  apt install -y \
+  apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y \
     openjdk-${JAVA_VERSION}-jre-headless && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/* \
-    /var/lib/apt/lists/*
+    /var/lib/apt-get/lists/*
 
 # add bin files
 COPY --from=build /mailbox/mailbox-cli/build/libs/mailbox-cli-linux.jar /app/mailbox-cli-linux.jar
