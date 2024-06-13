@@ -51,7 +51,8 @@ jobs:
             smhrambo/briar-mailbox:ls
             smhrambo/briar-mailbox:v1.0.8-lsalpine3.20
             smhrambo/briar-mailbox:v1.0-lsalpine3.20
-            smhrambo/briar-mailbox:lsalpine3.20, ls3.20
+            smhrambo/briar-mailbox:lsalpine3.20
+            smhrambo/briar-mailbox:ls3.20
           platforms: |
             linux/amd64
             linux/arm64
