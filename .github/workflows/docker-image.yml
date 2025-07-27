@@ -1,36 +1,36 @@
 name: Docker Image CI
-
 on:
   push:
     branches:
       - 'main'
     tags:
       - 'v*'
-
 jobs:
   buildx:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Get current date and version
         id: version
         run: |
           echo "date=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
           echo "hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       
-      - name: Login to Docker Hub
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build and push lsalpine
         uses: docker/build-push-action@v5
@@ -39,28 +39,20 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            smhrambo/briar-mailbox:latest
-            smhrambo/briar-mailbox:v1.0.8
-            smhrambo/briar-mailbox:v1.0
-            smhrambo/briar-mailbox:v1.0.8-lsalpine
-            smhrambo/briar-mailbox:v1.0-lsalpine
-            smhrambo/briar-mailbox:lsalpine
-            smhrambo/briar-mailbox:ls
-            smhrambo/briar-mailbox:v1.0.8-lsalpine3.20
-            smhrambo/briar-mailbox:v1.0-lsalpine3.20
-            smhrambo/briar-mailbox:lsalpine3.20
-            smhrambo/briar-mailbox:ls3.20
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:latest
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0.8
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0.8-lsalpine
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0-lsalpine
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:lsalpine
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:ls
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0.8-lsalpine3.20
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0-lsalpine3.20
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:lsalpine3.20
+            ghcr.io/${{ github.repository_owner }}/briar-mailbox:ls3.20
           platforms: |
             linux/amd64
             linux/arm64
           build-args: |
             BUILD_DATE=${{ steps.version.outputs.date }}
             BUILD_VERSION=${{ steps.version.outputs.hash }}
-
-
-
-
-
-
-
-
