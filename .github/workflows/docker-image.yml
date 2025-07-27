@@ -39,17 +39,17 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:latest
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0.8
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0.8-lsalpine
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0-lsalpine
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:lsalpine
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:ls
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0.8-lsalpine3.20
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:v1.0-lsalpine3.20
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:lsalpine3.20
-            ghcr.io/${{ github.repository_owner }}/briar-mailbox:ls3.20
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:latest
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:v1.0.8
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:v1.0
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:v1.0.8-lsalpine
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:v1.0-lsalpine
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:lsalpine
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:ls
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:v1.0.8-lsalpine3.20
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:v1.0-lsalpine3.20
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:lsalpine3.20
+            ghcr.io/${{ github.repository_owner | downcase }}/briar-mailbox:ls3.20
           platforms: |
             linux/amd64
             linux/arm64
